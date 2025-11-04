@@ -1,0 +1,198 @@
+@layer global, primitive, component, utility;
+
+@font-face {
+  font-family: "Source Sans";
+  src: url("../webfonts/SourceSans3VF-Upright.otf.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@layer global {
+	:root {
+		--ratio: 1.5;
+		--s-5: calc(var(--s-4) / var(--ratio));
+		--s-4: calc(var(--s-3) / var(--ratio));
+		--s-3: calc(var(--s-2) / var(--ratio));
+		--s-2: calc(var(--s-1) / var(--ratio));
+		--s-1: calc(var(--s0) / var(--ratio));
+		--s0: 1rem;
+		--s1: calc(var(--s0) * var(--ratio));
+		--s2: calc(var(--s1) * var(--ratio));
+		--s3: calc(var(--s2) * var(--ratio));
+		--s4: calc(var(--s3) * var(--ratio));
+		--s5: calc(var(--s4) * var(--ratio));
+		--color-tajweed-green-100: #f3fbfb;
+		--color-tajweed-green-500: #20a2aa;
+		--color-tajweed-green-800: #0f585a;
+
+		--measure: 60ch;
+		font-size: calc(1rem + 0.2vw);
+		font-family: "Source Sans", sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+		max-inline-size: var(--measure);
+		margin: 0;
+		padding: 0;
+	}
+
+	html,
+	body,
+	header,
+	nav,
+	main,
+	footer,
+	div {
+		max-inline-size: none;
+	}
+
+	body {
+		min-block-size: 100dvh;
+		background-color: var(--color-tajweed-green-100);
+	}
+
+	a {
+	  cursor: pointer;
+	  text-decoration: underline;
+	  color: var(--color-tajweed-green-800);
+	}
+
+	nav a {
+		color: black;
+		text-decoration: none;
+	}
+
+	nav,
+	main {
+		padding: var(--s0);
+	}
+
+	h1 {
+		font-weight: 600;
+	}
+
+	h2 {
+		font-weight: 500;
+	}
+}
+
+@layer primitive {
+	.stack > * + * {
+		margin-block-start: 0.5em;
+	}
+
+	.cluster {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s0);
+		align-items: center;
+	}
+
+	.space-between {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.center {
+		max-inline-size: var(--measure);
+		margin-inline: auto;
+	}
+
+	.center.big {
+		max-inline-size: calc(var(--measure) * 2);
+		margin-inline: auto;
+	}
+
+	.box {
+		padding: var(--s0);
+		border: 2px solid var(--color-tajweed-green-800);
+	}
+}
+
+@layer component {
+	.button {
+		display: inline-block;
+		position: relative;
+		background-color: var(--color-tajweed-green-500);
+		color: white;
+		text-decoration: none;
+		padding-inline: var(--s-2);
+		padding-block: var(--s-4);
+	}
+
+	.button svg {
+		color: var(--color-tajweed-green-500);
+		position: absolute;
+		height: 100%;
+		top: 0;
+	}
+
+	.button:hover {
+		background-color: var(--color-tajweed-green-800);
+	}
+
+	.button:hover svg {
+		color: var(--color-tajweed-green-800);
+	}
+
+	.button svg:nth-child(1) {
+		left: 0;
+		transform: translateX(-80%);
+	}
+
+	.button * + svg {
+		right: 0;
+		transform: translateX(80%) scaleX(-1);
+	}
+
+	.message {
+		font-size: 1.1em;
+		padding-block: 0.2em;
+	}
+}
+
+@layer utility {
+	.display-none {
+		display: none;
+	}
+
+	.bold {
+		font-weight: bold;
+	}
+
+	.max-inline-size-s5 {
+		max-inline-size: var(--s5);
+	}	}
+
+	.max-block-size-s5 {
+		max-block-size: var(--s5);
+	}
+
+	.max-size-s2 {
+		max-block-size: var(--s2);
+		max-inline-size: var(--s2);
+	}
+
+	.tajweed-green-100 {
+		color: var(--color-tajweed-green-100);
+	}
+
+	.bg-tajweed-green-500 {
+		background-color: var(--color-tajweed-green-500);
+		color: white;
+	}
+
+	.bg-tajweed-green-800 {
+		background-color: var(--color-tajweed-green-800);
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.flip {
+		transform: scaleX(-1);
+	}
+}
